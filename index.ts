@@ -1,6 +1,7 @@
 import express, {json} from "express";
 import cors from "cors";
 import 'express-async-errors';
+import {handleError, ValidationError} from "./utils/errors";
 
 const app = express();
 
@@ -9,6 +10,13 @@ app.use(cors({
 }));
 app.use(json());
 
-app.listen(3001, '0.0.0.0', ()=>{
+// Routes
+// app.get('/', async (req, res) => {
+//     throw new ValidationError('Daaamm');
+// });
+
+app.use(handleError);
+
+app.listen(3001, '0.0.0.0', () => {
     console.log('listening on port http://localhost:3001 ')
 });
