@@ -17,10 +17,7 @@ test('Can build AdRecord', () => {
 });
 
 test('Validates invalid price', () => {
-    const ad = new AdRecord({
-        ...defaultObj,
-        price: -3,
-    });
+
 
     expect(()=> new AdRecord({
         ...defaultObj,
