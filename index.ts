@@ -1,8 +1,9 @@
 import express, {json} from "express";
 import cors from "cors";
 import 'express-async-errors';
-import {handleError, ValidationError} from "./utils/errors";
+import {handleError} from "./utils/errors";
 import rateLimit from 'express-rate-limit';
+import { adRouter } from "./routers/ad.router";
 
 const app = express();
 
@@ -15,10 +16,7 @@ app.use(rateLimit({
     max: 100, // Limit each IP to 100 request per Windows, (here, per 5 min)
 }));
 
-// Routes
-// app.get('/', async (req, res) => {
-//     throw new ValidationError('Daaamm');
-// });
+app.use('/ad', adRouter);
 
 app.use(handleError);
 

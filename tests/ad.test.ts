@@ -3,7 +3,7 @@ import {pool} from "../utils/db";
 import {AdEntity} from "../types";
 
 const defaultObj = {
-    name: 'Testowa Osoba',
+    name: '[test] Testowa Osoba',
     description: 'Bla bla',
     url: 'https://megakurs.pl',
     lat: 9,
@@ -12,6 +12,7 @@ const defaultObj = {
 }
 
 afterAll(async () => {
+    await pool.execute("DELETE FROM `ads` WHERE `name` LIKE '%[test]%'");
     await pool.end();
 });
 
